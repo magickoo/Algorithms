@@ -1,23 +1,33 @@
 //C++ code
 #include <bits/stdc++.h>
+
 using namespace std;
-int maxsumsubb(int arr[],int n){
+void maxsumsubb(int arr[],int n){
     int maxsum=INT_MIN;
     int cursum=0;
+    int start=0,end=0,s=0;
    
     
         for(int i=0;i<n;i++ ){
             cursum=cursum+arr[i];
             if(cursum>maxsum){
                 maxsum=cursum;
+                start=s;
+                end=i;
             }
             if(cursum<0){
                 cursum=0;
+                s=i+1;
             }
         }
-        return maxsum;
+        cout<<"The Maximum sum is "<<maxsum<<endl;
+        cout<<"The Subarray is: ";
+        for(int i=start;i<=end;i++){
+            cout<<arr[i]<<" ";
+        }
     
 }
+
 int main()
 {
     int n;
@@ -28,11 +38,9 @@ cout<<"Enter array elements ";
 for(int i=0;i<n;i++){
     cin>>arr[i];
 }
-int ans=maxsumsubb(arr,n);
-cout<<"The Maximum sum is "<<ans;
+maxsumsubb(arr,n);
+
     return 0;
 }
-
-
 //Time Complexity: O(N)
 //
